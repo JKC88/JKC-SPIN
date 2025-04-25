@@ -18,9 +18,23 @@ form.addEventListener("submit", function (e) {
   const nama = document.getElementById("nama").value;
   const phone = document.getElementById("phone").value;
 
-  // Nanti boleh sambung ke Google Sheets di sini
-  formWrapper.style.display = "none";
-  gameContainer.style.display = "block";
+  fetch("https://script.google.com/macros/s/AKfycbxIP3aqdjZa-muLKd_byvRoixrWudbLEvCjXHM5OOyy1EJuxMsVdXdejRi7cHpbCoHf/exec", {
+    method: "POST",
+    body: JSON.stringify({ nama: nama, phone: phone }),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  .then(res => res.text())
+  .then(data => {
+    // Bila berjaya hantar ke Sheets → terus tampilkan game
+    formWrapper.style.display = "none";
+    gameContainer.style.display = "block";
+  })
+  .catch(err => {
+    alert("❌ Gagal hantar data. Sila cuba lagi.");
+    console.error("Submit error: ", err);
+  });
 });
 
 // Auto redirect after 60 seconds
