@@ -30,7 +30,7 @@ form.addEventListener("submit", async function (e) {
       region: ipData.region || "-"
     };
 
-    fetch("https://script.google.com/macros/s/AKfycbzZaopKSIOb4hdjljGJ9w6zHxn0gWhTl_z8nS8F8CRuElUWep82otoLIlG_pLEzMRmf/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbzBdhM_nrBBfIkSs4CN039illRV4v4eap9vBxo6S2E/dev", {
       method: "POST",
       body: JSON.stringify(dataToSend),
       headers: {
