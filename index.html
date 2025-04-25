@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JKC88|SPIN</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- FORM -->
+  <div class="form-wrapper" id="formWrapper">
+    <h2>🎁Daftar Untuk Mula Main🎁</h2>
+    <form id="startForm">
+      <input type="text" id="nama" placeholder="Nama Penuh" required />
+      <input type="text" id="phone" placeholder="Nombor Telefon" required />
+      <button type="submit">MULA MAIN!</button>
+    </form>
+  </div>
+
+  <!-- SLOT GAME -->
+  <div class="container" id="gameContainer" style="display: none;">
+    <h2>🎰 SLOT BONUS FREE GAME - RM100</h2>
+    <p>Kredit Free: <span id="credit">RM100</span></p>
+    <p>Jumlah SPIN: <span id="spinCount">0</span> / 10</p>
+
+    <!-- GRID -->
+    <div class="grid">
+      <div class="col" id="col1">
+        <div class="cell">💰</div>
+        <div class="cell mid">💰</div>
+        <div class="cell">💰</div>
+      </div>
+      <div class="col" id="col2">
+        <div class="cell">👑</div>
+        <div class="cell mid">👑</div>
+        <div class="cell">👑</div>
+      </div>
+      <div class="col" id="col3">
+        <div class="cell">💎</div>
+        <div class="cell mid">💎</div>
+        <div class="cell">💎</div>
+      </div>
+    </div>
+
+    <button id="spinBtn" onclick="spin()">SPIN SEKARANG - BET (RM10)</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<footer class="footer">
+© 2021–2025 JKC88. Hak Cipta Terpelihara.
+</footer>
